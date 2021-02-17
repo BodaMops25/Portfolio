@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="img/logo.svg" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="index.css">
+	<title>Bohdan Konoplev</title>
+</head>
+<body>
+
+	<div class="scrollKnob"></div>
+	<div class="scrollLine"></div>
+	<div class="scrollBar"></div>
+	<div class="scrollbar_anchor scrollbar_firstScreen" onclick="smoothScrollTo(0)"></div>
+	<div class="scrollbar_anchor scrollbar_aboutMe" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65)"></div>
+	<div class="scrollbar_anchor scrollbar_myWorks" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.55)"></div>
+	<div class="scrollbar_anchor scrollbar_contacts" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 2.5)"></div>
+
+	<div class="mobileMenu">
+		<div class="close" onclick="mobileMenuClose()"></div>
+		<nav class="inner_nav">
+			<a href="#aboutMe" class="inner_link" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65);mobileMenuClose()">Обо мне</a>
+			<a href="#myWorks" class="inner_link" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6);mobileMenuClose()">Мои работы</a>
+			<a href="#contacts" class="inner_link" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 4.5);mobileMenuClose()">Контакты</a>
+		</nav>
+	</div>
+
+	<header class="header">
+			<div class="header_inner">
+
+				<div class="inner_logo">
+					<img src="img/logo.svg" alt="Bohdan Konoplev">
+					<p class="logo_text">Bohdan Konoplev<br>junior верстальщик</p>
+				</div>
+
+				<nav class="inner_nav">
+					<a href="#aboutMe" class="inner_link" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65)" id="inner_link_aboutMe">Обо мне</a>
+					<a href="#myWorks" class="inner_link" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6)" id="inner_link_myWorks">Мои работы</a>
+					<a href="#contacts" class="inner_link" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 4.5)" id="inner_link_contacts">Контакты</a>
+				</nav>
+
+				<div class="inner_languages">
+					<div class="languages_lang" onclick="RULang()">RU</div>
+					<div class="languages_lang" onclick="USLang()">US</div>
+				</div>
+
+				<div src="img/burger_mobile.svg" alt="" class="inner_mobileMenu" onclick="mobileMenuOpen()"></div>
+
+			</div>
+			<div class="bottomPattern bottomPattern_0_8"></div>
+		</header>
+	
+	<div class="main">
+		<div class="firstScreen" id="firstScreen">
+			<div class="topPattern"></div>
+			<div class="firstScreen_inner">
+				<div class="inner_text">
+					<p class="text_overTitle">Приветствую вас</p>
+					<h1 class="text_title">Сверстаю вам сайт на HTML & CSS или на Tilda Publishing</h1>
+					<p class="text_subtitle">Сделаю его удобным для ваших клиентов и вдохну жизнь в ваш сайт</p>
+					<a href="#myWorks" class="text_button linkButton" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6)">Мои работы</a>
+				</div>
+				<img src="img/firstScreen_img3d.png" class="firstScreen_img" width="45%">
+			</div>
+			<div class="bottomPattern"></div>
+		</div>
+
+		<div class="aboutMe" id="aboutMe">
+			<div class="topPattern"></div>
+			<div class="aboutMe_inner">
+				<h2 class="inner_title title">Обо мне</h2>
+				<div class="inner_description">
+					<div class="description_text">
+						<p id="aboutMe" class="text_ptxt text">Меня зовут Богдан, мне 16 лет и я верстальщик сайтов. Стремлюсь стать экспертом в этой отрасли и вы можете мне помочь в этом. В работе с заказчиком обязуюсь быть чесным, ответственным и оперативным.</p>
+						<p id="myTask" class="text_ptxt text">Моя задача как верстальщика, реализовать вашу задумку и сделать ее удобной для конечного пользователя.</p>
+					</div>
+					<div class="description_imgs">
+						<img src="img/aboutMeImgEyes.svg" alt="" class="innerImgEyes">
+						<img src="img/aboutMeImg.svg" alt="" class="description_img">
+					</div>
+				</div>
+				<h2 class="inner_title_mySkills title">Мои навыки</h2>
+				<div class="inner_skillstable">
+					<div id="skillstable_item_html_css" class="skillstable_item text"><img src="img/html & css.svg" alt="html & css"><span>1 с половиной года опыта</span></div>
+					<div id="skillstable_item_tilda" class="skillstable_item text"><img src="img/tilda.svg" alt="tilda"><span>5 месяцев опыта</span></div>
+					<div id="skillstable_item_figma" class="skillstable_item text"><img src="img/figma.svg" alt="figma"><span>5 месяцев опыта</span></div>
+					<div id="skillstable_item_js" class="skillstable_item text"><img src="img/js.svg" alt="js"><span>1 месец опыта</span></div>
+				</div>
+
+			</div>
+			<div class="bottomPattern"></div>
+		</div>
+
+		<div class="myWorks" id="myWorks">
+			<div class="topPattern"></div>
+			<div class="myWorks_inner">
+				<h2 class="inner_title title">Мои работы(6)</h2>
+
+				<div class="inner_work">
+					<div class="work_stats">
+						<h3 id="work1" class="stats_title">Крутой сайт для дилерной канторы</h3>
+						<p id="spentTime_work1" class="stats_text text">Потраченое время — <span id="day1">1 День</span></p>
+						<p id="CustomerAssessment1" class="stats_text text">Оценка заказчика — <span id="value6_1">6.1 из 10</span></p>
+						<p class="stats_username text" id="stats_username_work1">Валентина Ивановна<img src="img/username.png" alt=""></p>
+						<p class="stats_queteblock">"</p>
+						<p class="stats_review text" id="stats_review_work1">Человек очень хороший, сделал все быстро и качествонно. Рекомендую!</p>
+						<p class="stats_queteblock stats_queteblock_bottom">"</p>
+					</div>
+					<img src="img/workImg.svg" alt="" class="work_img">
+				</div>
+
+				<div class="inner_work">
+					<div class="work_stats">
+						<h3 id="work2" class="stats_title">Сайт для Девушки</h3>
+						<p id="spentTime_work2" class="stats_text text">Потраченое время — <span id="day3">3 Дня</span></p>
+						<p id="CustomerAssessment2" class="stats_text text">Оценка заказчка — <span id="value7_5">7.5 из 10</span></p>
+						<p id="stats_username_work2" class="stats_username text">Девочка Ксюша<img src="img/username.png" alt=""></p>
+						<p class="stats_queteblock">"</p>
+						<p id="stats_review_work2" class="stats_review text">Мне очень понравилось. И человек приятный и сделал приятно.</p>
+						<p class="stats_queteblock stats_queteblock_bottom">"</p>
+					</div>
+					<img src="img/workImg.svg" alt="" class="work_img">
+				</div>
+
+				<div class="centerItem">
+					<button class="inner_button linkButton" onclick="alert('Еще работы не добавлены, подождите какое то время.')">Еще работы</button>
+				</div>
+
+			</div>
+			<div class="bottomPattern"></div>
+		</div>
+
+		<div class="contacts" id="contacts">
+			<div class="topPattern"></div>
+			<div class="contacts_inner">
+				<h2 class="inner_title title">Контакты</h2>
+				<div class="inner_contacts">
+
+					<div class="contacts_item gmail">
+						<h4 class="item_title"><img src="img/gmail.svg" alt="gmail">Gmail</h4>
+						<p class="item_Text">mail@gmail.com</p>
+						<a href="mailto:bodabodamops@gmail.com" class="item_link" id="item_link1">Написать</a>
+					</div>
+
+					<div class="contacts_item tg">
+						<h4 class="item_title"><img src="img/tg.svg" alt="gmail">Telegram</h4>
+						<p class="item_Text">@bodamops25</p>
+						<a href="https://t.me/bodamops25" class="item_link" id="item_link2">Написать</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<footer class="footer">
+			<div class="footer_items">
+				<div class="inner_logo">
+					<img src="img/logo.svg" alt="Bohdan Konoplev">
+					<p class="logo_text">Bohdan Konoplev<br>junior верстальщик</p>
+				</div>
+				<a href="#firstScreen" class="items_up" onclick="smoothScrollTo(0)"><img src="img/ArrowUp.png" width="32px" alt="">Наверх</a>
+				<a href="https://t.me/bodamops25" class="items_fastConnect linkButton">Быстрая связь</a>
+			</div>
+			<a href="https://t.me/mihuiill" class="createdBy">Дизайнер: Михаил Патьоха</a>
+		</footer>
+	</div>
+
+	<img src="img/paralax_rectangle_styled.svg" alt="paralax_rectangle_styled" class="paralax_rectangle_styled p1" width="106.8%">
+
+	<img src="img/paralax_rectangle_styled.svg" alt="paralax_rectangle_styled" class="paralax_rectangle_styled p2" width="106.8%" style="transform: scaleY(-1);">
+
+	<img src="img/paralax_rectangle_styled.svg" alt="paralax_rectangle_styled" class="paralax_rectangle_styled p3" width="106.8%" style="transform: scaleY(-1), scaleX(-1);">
+
+	<div class="bgGradient"></div>
+	<div class="bgElem"></div>
+	<div class="cursor"></div>
+
+	<script src="index.js"></script>
+</body>
+</html>
