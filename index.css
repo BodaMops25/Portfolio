@@ -893,7 +893,11 @@ body {
 		width: 100%;
 		display: inline-block;
 		text-align: center;
-	}}
+	}
+	.paralax_rectangle_styled {
+		display: none;
+	}
+}
 
 @media (max-width: 375px) {
 	.header_inner .inner_nav {
