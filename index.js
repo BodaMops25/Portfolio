@@ -153,7 +153,6 @@ else {
 	window.onscroll = () => {
 		getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
-		alert(scrollY)
 	}
 }
 
