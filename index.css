@@ -472,7 +472,6 @@ body {
 }
 
 .aboutMe_inner .inner_skillstable .skillstable_item img {
-	height: 40%;
 }
 
 .myWorks {
@@ -827,10 +826,10 @@ body {
 		margin-top: 40vh;
 	}
 	.myWorks {
-		margin-top: 40vh;
+		margin-top: 22vh;
 	}
 	.contacts {
-		margin-top: 40vh;
+		margin-top: 22vh;
 	}
 	.aboutMe_inner .inner_description {
 		flex-direction: column;
