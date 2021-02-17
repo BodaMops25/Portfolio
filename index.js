@@ -136,24 +136,22 @@ let greenColor = 255
 
 let firstScreenParalax = 120
 
-document.onwheel = event => {
-	if(event.deltaY > 0) {redColor += 2.2; greenColor -= 2.2}
-	else {redColor -= 2.2; greenColor += 2.2}
-	getNode('.cursor').style.boxShadow = `0px 0px 90px 70px rgba(${redColor}, ${greenColor}, 0, 1)`
+if(window.innerWidth > 1024) {
+	document.onwheel = event => {
+		if(event.deltaY > 0) {redColor += 2.2; greenColor -= 2.2}
+		else {redColor -= 2.2; greenColor += 2.2}
+		getNode('.cursor').style.boxShadow = `0px 0px 90px 70px rgba(${redColor}, ${greenColor}, 0, 1)`
 
-	//SCROLLBAR_MODULE--------------------------------------------------------------------
+		//SCROLLBAR_MODULE--------------------------------------------------------------------
 
-	// if(window.innerWidth > 1024) {
 		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
 		activScrollInterval === false ? smoothScrollTo(scrollY) : {}
-	// }
-	// else {
-		// document.onscroll = () => {
-		// 	if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
-		// 	activScrollInterval === false ? smoothScrollTo(scrollY) : {}
-		// }
-	// }
-	
+	}
+}
+
+window.onscroll = () => {
+	getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+	getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 }
 
 //ABOUT ME_EYES SCRIPT------------------------------------------------------------------
