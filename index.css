@@ -795,6 +795,9 @@ body {
 		width: 100%;
 		left: 0;
 	}
+	.paralax_rectangle_styled {
+		display: none;
+	}
 }
 
 @media (max-width: 600px) {
@@ -819,6 +822,9 @@ body {
 	}
 	.firstScreen_img {
 		width: 80%;
+	}
+	.aboutMe {
+		margin-top: 40vh;
 	}
 	.aboutMe_inner .inner_description {
 		flex-direction: column;
@@ -893,9 +899,6 @@ body {
 		width: 100%;
 		display: inline-block;
 		text-align: center;
-	}
-	.paralax_rectangle_styled {
-		display: none;
 	}
 }
 
