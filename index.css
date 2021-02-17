@@ -826,6 +826,12 @@ body {
 	.aboutMe {
 		margin-top: 40vh;
 	}
+	.myWorks {
+		margin-top: 40vh;
+	}
+	.contacts {
+		margin-top: 40vh;
+	}
 	.aboutMe_inner .inner_description {
 		flex-direction: column;
 	}
