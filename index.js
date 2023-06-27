@@ -1,4 +1,4 @@
-function getgetScrollMaxY()(){
+function getScrollMaxY(){
 	"use strict"
     	let innerh = window.innerHeight || ebody.clientHeight, yWithScroll = 0
 
