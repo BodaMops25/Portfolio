@@ -1,18 +1,5 @@
 function getScrollMaxY(){
-	"use strict"
-    	let innerh = window.innerHeight || ebody.clientHeight, yWithScroll = 0
-
-    	if (window.innerHeight && window.getScrollMaxY()){
-		// Firefox 
-		yWithScroll = window.innerHeight + window.getScrollMaxY()
-    	} else if (document.body.scrollHeight > document.body.offsetHeight){ 
-		// all but Explorer Mac 
-		yWithScroll = document.body.scrollHeight
-    	} else { 
-		// works in Explorer 6 Strict, Mozilla (not FF) and Safari 
-		yWithScroll = document.body.offsetHeight
-    	} 
-    	return yWithScroll-innerh; 
+	return typeof scrollMaxY === 'undefined' ? document.documentElement.scrollHeight - document.documentElement.clientHeight : scrollMaxY
 }
 
 let activScrollInterval = false
