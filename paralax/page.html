@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paralax</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- <div class="box">
+    <div id="side1" class="side">side 1</div>
+    <div id="side2" class="side">side 2</div>
+  </div> -->
+  
+  <main>
+
+    <div class="container">text 1</div>
+
+    <div class="separator"></div>
+
+    <div class="container">text 2</div>
+
+    <div class="separator"></div>
+
+    <div class="container">text 3</div>
+
+  </main>
+
+  <script>
+
+    // const paralax_nodes = document.querySelector('main').children
+    // const blocks = [
+    //   {x: 0, y: 0, z: -1000},
+    //   {x: 0, y: 500, z: 0},
+    //   {x: 0, y: 5000, z: -1000},
+    //   {x: 0, y: 1500, z: 0},
+    //   {x: 0, y: 10000, z: -1000},
+    // ]
+
+    // let scroll = 0
+
+    // function getTranslate({x, y, z}) {
+    //   return x + 'px ' + y + 'px ' + z + 'px'
+    // }
+
+    // function setTranslate({x, y, z}, index) {
+    //   if(x !== undefined) blocks[index].x = x
+    //   if(y !== undefined) blocks[index].y = y
+    //   if(z !== undefined) blocks[index].z = z
+
+    //   paralax_nodes[index].style.translate = getTranslate(blocks[index])
+    // }
+
+    // if(paralax_nodes.length !== blocks.length) {
+    //   alert('Nodes and blocks not equal!!!')
+    //   new Error('Nodes and blocks not equal!!!')
+    // }
+
+    // blocks.forEach((block, i) => {
+    //   paralax_nodes[i].style.translate = getTranslate(block)
+    // })
+
+    // document.addEventListener('mousewheel', e => {
+
+    //   if(scroll === 0 && e.deltaY < 0) return
+
+    //   scroll -= e.deltaY
+
+    //   blocks.forEach((item, i, arr) => {
+    //     setTranslate({y: item.y - e.deltaY}, i)
+    //   })
+    // })
+
+  </script>
+
+</body>
+</html>

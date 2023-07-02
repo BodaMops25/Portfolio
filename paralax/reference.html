@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      font-family: sans-serif;
+    }
+
+    .container {
+      width: 100vw;
+      height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      perspective: 1px;
+
+      position: relative;
+    }
+
+    .blocks-container {
+      width: 100%;
+
+      transform-origin: 50% 16.5%;
+      translate: 0 0 -2px;
+      scale: 3;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+    .separators-container {
+      width: 100%;
+
+      transform-origin: 50%;
+      translate: 0 0 -1px;
+      scale: 2;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    section {
+      width: 100%;
+      color: #fff;
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin-left: -6px;
+    }
+
+    section.block {
+      height: 100vh;
+      background-color: rgba(157, 223, 164, 0.2);
+      margin-bottom: 20px;
+    }
+    section.separator {
+      height: 50vh;
+    }
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 8000px;
+
+      z-index: -3;
+    }
+
+    #bgGradient {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+
+      width: 100%;
+      height: 100%;
+
+      background: #000;
+      background: linear-gradient(180deg, #000 0%, #00063F 100%);
+      opacity: .8;
+    }
+
+    #bgElem {
+      background: url(../img/bgElems.svg);
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="container">
+    
+    <div class="blocks-container">
+      <section class="block"><div class="h1" style="font-size: 40px">some text</div></section>
+      <section class="block"><div class="h1" style="font-size: 40px">some text</div></section>
+      <section class="block"><div class="h1" style="font-size: 40px">some text</div></section>
+    </div>
+    
+    <div class="separators-container">
+      <section class="separator" style="background-color: #c8c8bc"></section>
+      <section class="separator" style="background-color: #638a87"></section>
+    </div>
+
+    <div class="background">
+      <div id="bgGradient"></div>
+      <div id="bgElem"></div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,11 +1,9 @@
-function getScrollMaxY(){
-	return typeof scrollMaxY === 'undefined' ? document.documentElement.scrollHeight - document.documentElement.clientHeight : scrollMaxY
-}
+typeof scrollMaxY === 'undefined' ? scrollMaxY = document.documentElement.scrollHeight - document.documentElement.clientHeight : ''
 
 let activScrollInterval = false
 
-function getNode(node) {
-	return document.querySelector(node)
+function getNode(selector) {
+	return document.querySelector(selector)
 }
 let a
 setTimeout(()=>{
@@ -14,7 +12,7 @@ setTimeout(()=>{
 
 pageYOffset = scrollY
 
-getNode('.scrollKnob').style.top = pageYOffset * 100 / (getScrollMaxY() - 420) / 100 * (window.innerHeight - window.innerHeight * 0.139) + 'px'
+getNode('.scrollKnob').style.top = pageYOffset * 100 / (scrollMaxY - 420) / 100 * (window.innerHeight - window.innerHeight * 0.139) + 'px'
 
 //MOBILE MENU
 
@@ -37,7 +35,7 @@ function smoothScroll() {
 	activScrollInterval = true
 	const smoothScrollInterval = setInterval(() => {
 
-		if(scrollY > pageYOffset && pageYOffset <= getScrollMaxY()) {
+		if(scrollY > pageYOffset && pageYOffset <= scrollMaxY) {
 			pageYOffset += (scrollY - pageYOffset) / 40
 		}
 
@@ -63,10 +61,10 @@ function smoothScroll() {
 						scrollY = 0
 					}
 					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
-						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (getScrollMaxY() - 420)
+						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
 					}
 					else {
-						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (getScrollMaxY() - 420)
+						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
 					}
 					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
 				}
@@ -85,10 +83,10 @@ function smoothScroll() {
 						scrollY = 0
 					}
 					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
-						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (getScrollMaxY() - 420)
+						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
 					}
 					else {
-						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (getScrollMaxY() - 420)
+						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
 					}
 					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
 				}
@@ -99,7 +97,7 @@ function smoothScroll() {
 			}
 		}
 
-		let scrollKnobStyleTop = pageYOffset * 100 / (getScrollMaxY() - 550) / 100 * (window.innerHeight - window.innerHeight * 0.139)
+		let scrollKnobStyleTop = pageYOffset * 100 / (scrollMaxY - 550) / 100 * (window.innerHeight - window.innerHeight * 0.139)
 
 		if(scrollKnobStyleTop >= 0 && scrollKnobStyleTop <= window.innerHeight - 50) {
 			getNode('.scrollKnob').style.top = scrollKnobStyleTop  + 'px'
@@ -108,19 +106,19 @@ function smoothScroll() {
 
 		//PARALAX--------------------------------------------------------------------------------
 
-		getNode('.main').style.top = pageYOffset / 2 + (0 * 100 / getScrollMaxY() / 100 * getScrollMaxY()) + 'px'
+		getNode('.main').style.top = pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 
-		getNode('body').style.height = a + pageYOffset / 2 + (0 * 100 / getScrollMaxY() / 100 * getScrollMaxY()) + 'px'
+		getNode('body').style.height = a + pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 	}, 1)
 }
 
 //SMOOSH SCROLL---------------
 
 function smoothScrollTo(scrollToInPX) {
-	scrollToInPX >= 0 && scrollToInPX <= getScrollMaxY() ? scrollY = scrollToInPX : {}
+	scrollToInPX >= 0 && scrollToInPX <= scrollMaxY ? scrollY = scrollToInPX : {}
 
 	if(scrollToInPX < 0) {scrollY = 0; console.log('invalid scrolling value(less than zero)')}
-	else if(scrollToInPX > getScrollMaxY() ) {scrollY = getScrollMaxY(); console.log('invalid scrolling value(higher maximum site height)')}
+	else if(scrollToInPX > scrollMaxY ) {scrollY = scrollMaxY; console.log('invalid scrolling value(higher maximum site height)')}
 
 	smoothScroll()
 }
@@ -148,15 +146,15 @@ if(window.innerWidth > 1024) {
 
 		//SCROLLBAR_MODULE--------------------------------------------------------------------
 
-		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= getScrollMaxY() || event.deltaY < 0)) scrollY += event.deltaY * 20
+		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
 		activScrollInterval === false ? smoothScrollTo(scrollY) : {}
 	}
 }
 
 else {
 	window.onscroll = () => {
-		getNode('.main').style.top = scrollY / 2 + (0 * 100 / getScrollMaxY() / 100 * getScrollMaxY()) + 'px'
-		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / getScrollMaxY() / 100 * getScrollMaxY()) + 'px'
+		getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 	}
 }
 

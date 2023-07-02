@@ -28,7 +28,7 @@ body {
 	background: #000;
 	background: linear-gradient(180deg, #000 50%, #59AEEC 100%);
 	position: relative;
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 .bgGradient {
