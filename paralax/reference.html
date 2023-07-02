@@ -58,17 +58,22 @@
       display: flex;
       align-items: center;
       justify-content: center;
-
-      margin-left: -6px;
     }
 
     section.block {
       height: 100vh;
       background-color: rgba(157, 223, 164, 0.2);
-      margin-bottom: 20px;
     }
     section.separator {
       height: 50vh;
+    }
+
+    section.separator:nth-child(1) {
+      translate: 0 200%;
+    }
+
+    section.separator:nth-child(2) {
+      translate: 0 400%;
     }
 
     .background {
@@ -128,6 +133,21 @@
       <div id="bgElem"></div>
     </div>
   </div>
+
+  <script>
+    
+    function resetNodePosition(node) {
+      const {top, left} = node.getBoundingClientRect(),
+            {scale} = getComputedStyle(node)
+
+      node.style.top = -top * scale + 'px'
+      node.style.left = -left * scale + 'px'
+    }
+
+    resetNodePosition(document.querySelector('.container .blocks-container'))
+    resetNodePosition(document.querySelector('.container .separators-container'))
+
+  </script>
 
 </body>
 </html>
