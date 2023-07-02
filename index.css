@@ -17,43 +17,119 @@ button {
 	color: inherit;
 }
 
-/*-----------------------------------------------*/
-
 body {
-	font-family: Poppins, sans-serif;
-	color: #fff;
 	margin: 0;
 	padding: 0;
-	width: 100%;
+	width: 100vw;
+	height: 100vh;
 	background: #000;
-	background: linear-gradient(180deg, #000 50%, #59AEEC 100%);
+	color: #fff;
+	font-family: Poppins, sans-serif;
 	position: relative;
 	overflow-x: hidden;
 }
 
-.bgGradient {
+/*PARALAX------------------------------------------------------------------------------------------------------------------------------------*/
+/*PARALAX------------------------------------------------------------------------------------------------------------------------------------*/
+/*PARALAX------------------------------------------------------------------------------------------------------------------------------------*/
+
+.paralax-container {
+	width: 100vw;
+	height: 100vh;
+	overflow-x: hidden;
+	overflow-y: auto;
+	perspective: 1px;
+
+	position: relative;
+}
+
+.paralax-container__item {
+	width: 100%;
+
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.paralax-container__blocks {
+	transform-origin: 50% 16.5%;
+	translate: 0 0 -2px;
+	scale: 3;
+	z-index: -2;
+}
+
+.paralax-container__separators {
+	transform-origin: 50%;
+	translate: 0 0 -1px;
+	scale: 2;
+	z-index: -1;
+}
+
+.separator {
+	width: 100%;
+}
+
+.separator__ending {
+	width: 100%;
+	background: center / cover no-repeat url(img/shapes/paralax_rectangle_ending.svg);
+	height: 138px;
+}
+
+.separator__ending--start {
+	margin-bottom: -1px;
+}
+
+.separator__ending--end {
+	scale: -1;
+	background-position: -23.8px 11px;
+	margin-top: -1px;
+}
+
+.separator__content {
+	width: 100%;
+	height: 200px;
+
+	background: url(img/shapes/paralax_rectangle_elem.svg);
+	background-position-x: -6px;
+}
+
+.paralax-container__background {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 12670px;
+
+	z-index: -3;
+}
+
+#bgGradient {
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: -1;
+
 	width: 100%;
 	height: 100%;
+
 	background: #000;
 	background: linear-gradient(180deg, #000 0%, #00063F 100%);
-	opacity: 40%;
+	opacity: .4;
 }
 
-.bgElem {
-	background: url(img/bgElems.svg);
+#bgElem {
+	background: url(img/shapes/bgElems.svg);
+
 	position: absolute;
 	top: 0;
 	left: 0;
 	z-index: -2;
+
 	width: 100%;
 	height: 100%;
 }
 
-.cursor {
+#bgCursor {
 	width: 0.1px;
 	height: 0.1px;
 	background-color: rgba(5, 255, 0, 0.6);
@@ -178,11 +254,11 @@ body {
 	z-index: 100;
 	transition: 0.2s 1s;
 	top: -70px;
+	transition: 0.2s;
 }
 
 .header:hover {
-	top: 0 !important;
-	transition: 0.2s;
+	top: 0;
 }
 
 .header_inner {
@@ -277,23 +353,18 @@ body {
 }
 
 .topPattern {
-	background: url(img/spike.svg);
+	background: url(img/shapes/spike.svg);
 	height: 16px;
 	transform: scaleY(-1);
 }
 
 .bottomPattern {
-	background: url(img/spike.svg);
+	background: url(img/shapes/spike.svg);
 	height: 16px;
 }
 
 .bottomPattern_0_8 {
-	background: url(img/spike0_8.svg);
-}
-
-.main {
-	position: relative;
-	top: 0;
+	background: url(img/shapes/spike0_8.svg);
 }
 
 /*FIRST_SCREEN------------------------------------------------------------------------------------------------------------------------------------*/
@@ -368,25 +439,15 @@ body {
 }
 
 .paralax_rectangle_styled {
+	width: 106.8%;
 	position: absolute;
 	top: 0;
 	left: -2px;
-	z-index: 10;
-}
-
-.p1 {
-	top: 110vw;
-}
-.p2 {
-	top: 295vw;
-}
-.p3 {
-	top: 550vw;
 }
 
 .aboutMe {
 	width: 100%;
-	margin-top: 25vw;
+	margin-top: 13vw;
 }
 
 .aboutMe_inner {
@@ -476,7 +537,7 @@ body {
 
 .myWorks {
 	width: 100%;
-	margin-top: 20vw;
+	margin-top: 13vw;
 }
 
 .myWorks_inner {
@@ -563,7 +624,7 @@ body {
 
 .contacts {
 	width: 100%;
-	margin-top: 20vw;
+	margin-top: 10vw;
 }
 
 .contacts_inner {
