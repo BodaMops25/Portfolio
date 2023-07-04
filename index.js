@@ -10,9 +10,9 @@ setTimeout(()=>{
 	a = getNode('body').offsetHeight
 },100)
 
-pageYOffset = scrollY
+// pageYOffset = scrollY
 
-getNode('.scrollKnob').style.top = pageYOffset * 100 / (scrollMaxY - 420) / 100 * (window.innerHeight - window.innerHeight * 0.139) + 'px'
+// getNode('.scrollKnob').style.top = pageYOffset * 100 / (scrollMaxY - 420) / 100 * (window.innerHeight - window.innerHeight * 0.139) + 'px'
 
 //MOBILE MENU
 
@@ -31,86 +31,86 @@ function mobileMenuClose() {
 
 //SCROLL FUNCTION
 
-function smoothScroll() {
-	activScrollInterval = true
-	const smoothScrollInterval = setInterval(() => {
+// function smoothScroll() {
+// 	activScrollInterval = true
+// 	const smoothScrollInterval = setInterval(() => {
 
-		if(scrollY > pageYOffset && pageYOffset <= scrollMaxY) {
-			pageYOffset += (scrollY - pageYOffset) / 40
-		}
+// 		if(scrollY > pageYOffset && pageYOffset <= scrollMaxY) {
+// 			pageYOffset += (scrollY - pageYOffset) / 40
+// 		}
 
-		else if(pageYOffset > scrollY && pageYOffset >= 0) {
-			pageYOffset -= (pageYOffset - scrollY) / 40
-		}
+// 		else if(pageYOffset > scrollY && pageYOffset >= 0) {
+// 			pageYOffset -= (pageYOffset - scrollY) / 40
+// 		}
 
-		if(scrollY === Math.round(pageYOffset * 10) / 10) {
-			clearInterval(smoothScrollInterval)
-			activScrollInterval = false
-		}
+// 		if(scrollY === Math.round(pageYOffset * 10) / 10) {
+// 			clearInterval(smoothScrollInterval)
+// 			activScrollInterval = false
+// 		}
 
-		scrollTo(0, pageYOffset)
+// 		scrollTo(0, pageYOffset)
 
-		//SCROLL WITH MOUSE
+// 		//SCROLL WITH MOUSE
 
-		getNode('.scrollBar').onmousedown = () => {
-			getNode('html').style.webkitUserSelect = 'none'
-			let mouseHoldDown = true
-			document.onmousemove = event => {
-				if(mouseHoldDown) {
-					if(event.clientY <= 50) {
-						scrollY = 0
-					}
-					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
-						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
-					}
-					else {
-						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
-					}
-					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
-				}
-			}
-			document.onmouseup = () => {
-				mouseHoldDown = false
-				getNode('html').style.webkitUserSelect = 'auto'
-			}
-		}
-		getNode('.scrollKnob').onmousedown = () => {
-			getNode('html').style.webkitUserSelect = 'none'
-			let mouseHoldDown = true
-			document.onmousemove = event => {
-				if(mouseHoldDown) {
-					if(event.clientY <= 50) {
-						scrollY = 0
-					}
-					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
-						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
-					}
-					else {
-						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
-					}
-					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
-				}
-			}
-			document.onmouseup = () => {
-				mouseHoldDown = false
-				getNode('html').style.webkitUserSelect = 'auto'
-			}
-		}
+// 		getNode('.scrollBar').onmousedown = () => {
+// 			getNode('html').style.webkitUserSelect = 'none'
+// 			let mouseHoldDown = true
+// 			document.onmousemove = event => {
+// 				if(mouseHoldDown) {
+// 					if(event.clientY <= 50) {
+// 						scrollY = 0
+// 					}
+// 					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
+// 						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
+// 					}
+// 					else {
+// 						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
+// 					}
+// 					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
+// 				}
+// 			}
+// 			document.onmouseup = () => {
+// 				mouseHoldDown = false
+// 				getNode('html').style.webkitUserSelect = 'auto'
+// 			}
+// 		}
+// 		getNode('.scrollKnob').onmousedown = () => {
+// 			getNode('html').style.webkitUserSelect = 'none'
+// 			let mouseHoldDown = true
+// 			document.onmousemove = event => {
+// 				if(mouseHoldDown) {
+// 					if(event.clientY <= 50) {
+// 						scrollY = 0
+// 					}
+// 					else if(event.clientY < window.innerHeight - 50 && event.clientY > 0) {
+// 						scrollY = event.clientY * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
+// 					}
+// 					else {
+// 						scrollY = (window.innerHeight - 50) * 100 / (window.innerHeight - window.innerHeight * 0.139) / 100 * (scrollMaxY - 420)
+// 					}
+// 					activScrollInterval === false ? smoothScrollTo(scrollY) : {}
+// 				}
+// 			}
+// 			document.onmouseup = () => {
+// 				mouseHoldDown = false
+// 				getNode('html').style.webkitUserSelect = 'auto'
+// 			}
+// 		}
 
-		let scrollKnobStyleTop = pageYOffset * 100 / (scrollMaxY - 550) / 100 * (window.innerHeight - window.innerHeight * 0.139)
+// 		let scrollKnobStyleTop = pageYOffset * 100 / (scrollMaxY - 550) / 100 * (window.innerHeight - window.innerHeight * 0.139)
 
-		if(scrollKnobStyleTop >= 0 && scrollKnobStyleTop <= window.innerHeight - 50) {
-			getNode('.scrollKnob').style.top = scrollKnobStyleTop  + 'px'
-		}
+// 		if(scrollKnobStyleTop >= 0 && scrollKnobStyleTop <= window.innerHeight - 50) {
+// 			getNode('.scrollKnob').style.top = scrollKnobStyleTop  + 'px'
+// 		}
 
 
-		//PARALAX--------------------------------------------------------------------------------
+// 		//PARALAX--------------------------------------------------------------------------------
 
-		getNode('.main').style.top = pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+// 		getNode('.main').style.top = pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
 
-		getNode('body').style.height = a + pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
-	}, 1)
-}
+// 		getNode('body').style.height = a + pageYOffset / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+// 	}, 1)
+// }
 
 //SMOOSH SCROLL---------------
 
@@ -138,25 +138,25 @@ let greenColor = 255
 
 let firstScreenParalax = 120
 
-if(window.innerWidth > 1024) {
-	document.onwheel = event => {
-		if(event.deltaY > 0) {redColor += 2.2; greenColor -= 2.2}
-		else {redColor -= 2.2; greenColor += 2.2}
-		getNode('.cursor').style.boxShadow = `0px 0px 90px 70px rgba(${redColor}, ${greenColor}, 0, 1)`
+// if(window.innerWidth > 1024) {
+// 	document.onwheel = event => {
+// 		if(event.deltaY > 0) {redColor += 2.2; greenColor -= 2.2}
+// 		else {redColor -= 2.2; greenColor += 2.2}
+// 		getNode('.cursor').style.boxShadow = `0px 0px 90px 70px rgba(${redColor}, ${greenColor}, 0, 1)`
 
-		//SCROLLBAR_MODULE--------------------------------------------------------------------
+// 		//SCROLLBAR_MODULE--------------------------------------------------------------------
 
-		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
-		activScrollInterval === false ? smoothScrollTo(scrollY) : {}
-	}
-}
+// 		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
+// 		activScrollInterval === false ? smoothScrollTo(scrollY) : {}
+// 	}
+// }
 
-else {
-	window.onscroll = () => {
-		getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
-		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
-	}
-}
+// else {
+// 	window.onscroll = () => {
+// 		getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+// 		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+// 	}
+// }
 
 //ABOUT ME_EYES SCRIPT------------------------------------------------------------------
 
@@ -167,13 +167,13 @@ window.onmousemove = event => {
 
 //CURSOR HEADER_ANIM--------------------------------------------------------------------
 
-getNode('.header').style.top = 0 + 'px'
-let headerAnim  = setTimeout(() => {
-	getNode('.header').style.top = - 70 + 'px'
-	clearTimeout(headerAnim)
-}, 5000)
+// getNode('.header').style.top = 0 + 'px'
+// let headerAnim  = setTimeout(() => {
+// 	getNode('.header').style.top = - 70 + 'px'
+// 	clearTimeout(headerAnim)
+// }, 5000)
 
-smoothScroll()
+// smoothScroll()
 
 //US LANGUAGE---------------------------------------------------------------------------------------
 

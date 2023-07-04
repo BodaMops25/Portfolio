@@ -17,6 +17,15 @@ button {
 	color: inherit;
 }
 
+@keyframes bodyAnim {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -27,6 +36,7 @@ body {
 	font-family: Poppins, sans-serif;
 	position: relative;
 	overflow-x: hidden;
+	animation: bodyAnim 2s;
 }
 
 /*PARALAX------------------------------------------------------------------------------------------------------------------------------------*/
@@ -36,8 +46,8 @@ body {
 .paralax-container {
 	width: 100vw;
 	height: 100vh;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden;
+	/* overflow-y: auto; */
 	perspective: 1px;
 
 	position: relative;
@@ -77,11 +87,12 @@ body {
 
 .separator__ending--start {
 	margin-bottom: -1px;
+	background-position-x: -5px;
 }
 
 .separator__ending--end {
 	scale: -1;
-	background-position: -23.8px 11px;
+	background-position: -6.8px 11px;
 	margin-top: -1px;
 }
 
