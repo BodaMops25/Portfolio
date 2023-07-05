@@ -14,17 +14,17 @@
   <!-- <div class="scrollKnob"></div>
   <div class="scrollLine"></div>
   <div class="scrollBar"></div>
-  <div class="scrollbar_anchor scrollbar_firstScreen" onclick="smoothScrollTo(0)"></div>
-  <div class="scrollbar_anchor scrollbar_aboutMe" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65)"></div>
-  <div class="scrollbar_anchor scrollbar_myWorks" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.55)"></div>
-  <div class="scrollbar_anchor scrollbar_contacts" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 2.5)"></div> -->
+  <div class="scrollbar_anchor scrollbar_firstScreen" ></div>
+  <div class="scrollbar_anchor scrollbar_aboutMe" ></div>
+  <div class="scrollbar_anchor scrollbar_myWorks" ></div>
+  <div class="scrollbar_anchor scrollbar_contacts" ></div> -->
 
   <div class="mobileMenu">
     <div class="close" onclick="mobileMenuClose()"></div>
     <nav class="inner_nav">
-      <a href="#aboutMe" class="inner_link" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65);mobileMenuClose()">Обо мне</a>
-      <a href="#myWorks" class="inner_link" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6);mobileMenuClose()">Мои работы</a>
-      <a href="#contacts" class="inner_link" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 4.5);mobileMenuClose()">Контакты</a>
+      <a href="#aboutMe" class="inner_link" onclick="mobileMenuClose()">Обо мне</a>
+      <a href="#myWorks" class="inner_link" onclick="mobileMenuClose()">Мои работы</a>
+      <a href="#contacts" class="inner_link" onclick="mobileMenuClose()">Контакты</a>
     </nav>
   </div>
 
@@ -37,9 +37,9 @@
       </div>
 
       <nav class="inner_nav">
-        <a href="#aboutMe" class="inner_link" onclick="smoothScrollTo(getNode('.aboutMe').offsetTop + window.innerWidth * 0.65)" id="inner_link_aboutMe">Обо мне</a>
-        <a href="#myWorks" class="inner_link" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6)" id="inner_link_myWorks">Мои работы</a>
-        <a href="#contacts" class="inner_link" onclick="smoothScrollTo(getNode('.contacts').offsetTop + window.innerWidth * 4.5)" id="inner_link_contacts">Контакты</a>
+        <a href="#aboutMe" class="inner_link"  id="inner_link_aboutMe">Обо мне</a>
+        <a href="#myWorks" class="inner_link"  id="inner_link_myWorks">Мои работы</a>
+        <a href="#contacts" class="inner_link"  id="inner_link_contacts">Контакты</a>
       </nav>
 
       <div class="inner_languages">
@@ -62,7 +62,7 @@
             <p class="text_overTitle">Приветствую вас</p>
             <h1 class="text_title">Сверстаю вам сайт на HTML & CSS или на Tilda Publishing</h1>
             <p class="text_subtitle">Сделаю его удобным для ваших клиентов и вдохну жизнь в ваш сайт</p>
-            <a href="#myWorks" class="text_button linkButton" onclick="smoothScrollTo(getNode('.myWorks').offsetTop + window.innerWidth * 1.6)">Мои работы</a>
+            <a href="#myWorks" class="text_button linkButton" >Мои работы</a>
           </div>
           <img src="img/firstScreen_img3d.png" class="firstScreen_img" width="45%">
         </div>
@@ -162,7 +162,7 @@
             <img src="img/logo.svg" alt="Bohdan Konoplev">
             <p class="logo_text">Bohdan Konoplev<br>junior верстальщик</p>
           </div>
-          <a href="#firstScreen" class="items_up" onclick="smoothScrollTo(0)"><img src="img/ArrowUp.png" width="32px" alt="">Наверх</a>
+          <a href="#firstScreen" class="items_up" ><img src="img/ArrowUp.png" width="32px" alt="">Наверх</a>
           <a href="https://t.me/bodamops25" class="items_fastConnect linkButton">Быстрая связь</a>
         </div>
         <a href="https://t.me/mihuiill" class="createdBy">Дизайнер: Михаил Патьоха</a>
@@ -197,6 +197,8 @@
   </main>
 
   <script>
+
+    const paralaxContainer = document.querySelector('.paralax-container__blocks')
     
     function resetNodePosition(node) {
       const {top, left} = node.getBoundingClientRect(),
@@ -206,51 +208,75 @@
       node.style.left = -left * scale + 'px'
     }
 
-    resetNodePosition(document.querySelector('.paralax-container__blocks'))
+    resetNodePosition(paralaxContainer)
     resetNodePosition(document.querySelector('.paralax-container__separators'))
 
   </script>
 
   <script>
 
-    // SCROLL
+    const paralax_node_scale = +getComputedStyle(paralaxContainer).scale
 
-    const scroll_FPS = 60,
-          scroll_scale = 2,
-          scroll_smoothness = 10,
-          scroll_interval_brake_step = 10,
-          paralaxContainer = document.querySelector('.paralax-container')
+    const SCROLL_MODULE_Y = {
+      scroll_FPS: 60,
+      scroll_scale: 5,
+      keyboard_scroll_scale: 50,
+      scroll_smoothness: 10,
+      scroll_interval_brake_step: 10,
+      scrollingNode: document.querySelector('.paralax-container'),
+      scroll_to_node_bias: 30,
 
-    let scroll = 0,
-        scrollInterval = null
+      scrollTo: 0,
+      scrollInterval: null,
 
-    function smoothScrollTo(y) {
+      smoothScrollTo: function(y) {
+        if(y < 0) this.scrollTo = 0
+        else if(this.scrollingNode.scrollHeight < y) this.scrollTo = this.scrollingNode.scrollHeight
+        else this.scrollTo = y
 
-      if(y < 0) y = 0
-      else if(paralaxContainer.scrollHeight < y) y = paralaxContainer.scrollHeight
+        if(this.scrollInterval === null) {
+          this.scrollInterval = setInterval(() => {
 
-      clearInterval(scrollInterval)
-      scrollInterval = setInterval(() => {
+          const curY = this.scrollingNode.scrollTop,
+                scrollToY = Math.round(curY + (this.scrollTo - curY) / this.scroll_smoothness)
 
-        const curY = paralaxContainer.scrollTop,
-              scrollToY = Math.round(curY + (y - curY) / scroll_smoothness)
+          this.scrollingNode.scrollTo(0, scrollToY)
 
-        paralaxContainer.scrollTo(0, scrollToY)
+          if(curY - this.scroll_interval_brake_step <= this.scrollTo && this.scrollTo <= curY + this.scroll_interval_brake_step) {
+            clearInterval(this.scrollInterval)
+            this.scrollInterval = null
+          }
 
-        if(curY - scroll_interval_brake_step <= y && y <= curY + scroll_interval_brake_step) {
-          clearInterval(scrollInterval)
+          }, 1000 / this.scroll_FPS)
         }
+      },
 
-      }, 1000 / scroll_FPS)
+      smoothScrollToNode: function(node) {
+        this.smoothScrollTo((node.offsetTop - this.scroll_to_node_bias) * paralax_node_scale)
+      },
 
-      return true
+      makeSmoothScroll: function(deltaY) {
+        this.scrollTo += deltaY * this.scroll_scale
+        if(this.scrollTo < 0) this.scrollTo = 0
+        else if(this.scrollingNode.scrollHeight < this.scrollTo) this.scrollTo = this.scrollingNode.scrollHeight
+        this.smoothScrollTo(this.scrollTo)
+      }
     }
 
     document.addEventListener('wheel', ({deltaY}) => {
-      scroll += deltaY * scroll_scale
-      if(scroll < 0) scroll = 0
-      else if(paralaxContainer.scrollHeight < scroll) scroll = paralaxContainer.scrollHeight
-      smoothScrollTo(scroll)
+      SCROLL_MODULE_Y.makeSmoothScroll(deltaY)
+    })
+
+    document.addEventListener('keydown', ({key, code}) => {
+      if(code === 'ArrowUp') SCROLL_MODULE_Y.makeSmoothScroll(-SCROLL_MODULE_Y.keyboard_scroll_scale)
+      else if(code === 'ArrowDown') SCROLL_MODULE_Y.makeSmoothScroll(SCROLL_MODULE_Y.keyboard_scroll_scale)
+    })
+
+    document.querySelectorAll('a[href*="#"]').forEach(link => {
+      const linkNode = document.querySelector(link.getAttribute('href'))
+      link.addEventListener('click', () => {
+        SCROLL_MODULE_Y.smoothScrollToNode(linkNode)
+      })
     })
 
   </script>
