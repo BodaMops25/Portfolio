@@ -16,10 +16,10 @@
       <div class="scrollKnob"></div>
     </div>
 
-    <div class="scrollbar_anchor scrollbar_firstScreen"></div>
+    <!-- <div class="scrollbar_anchor scrollbar_firstScreen"></div>
     <div class="scrollbar_anchor scrollbar_aboutMe"></div>
     <div class="scrollbar_anchor scrollbar_myWorks"></div>
-    <div class="scrollbar_anchor scrollbar_contacts"></div>
+    <div class="scrollbar_anchor scrollbar_contacts"></div> -->
   </div>
 
   <div class="mobileMenu">
@@ -31,7 +31,7 @@
     </nav>
   </div>
 
-  <header class="header">
+  <header class="header header--opened">
     <div class="header_inner">
 
       <div class="inner_logo">
@@ -47,7 +47,7 @@
 
       <div class="inner_languages">
         <div class="languages_lang" onclick="RULang()">RU</div>
-        <div class="languages_lang" onclick="USLang()">US</div>
+        <div class="languages_lang" onclick="ENLang()">EN</div>
       </div>
 
       <div src="img/burger_mobile.svg" alt="" class="inner_mobileMenu" onclick="mobileMenuOpen()"></div>
@@ -58,7 +58,7 @@
   
   <main class="paralax-container">
     <section class="paralax-container__item paralax-container__blocks">
-      <div class="firstScreen" id="firstScreen">
+      <div class="firstScreen scroll-point" id="firstScreen">
         <div class="topPattern"></div>
         <div class="firstScreen_inner">
           <div class="inner_text">
@@ -72,7 +72,7 @@
         <div class="bottomPattern"></div>
       </div>
   
-      <div class="aboutMe" id="aboutMe">
+      <div class="aboutMe scroll-point" id="aboutMe">
         <div class="topPattern"></div>
         <div class="aboutMe_inner">
           <h2 class="inner_title title">Обо мне</h2>
@@ -98,7 +98,7 @@
         <div class="bottomPattern"></div>
       </div>
   
-      <div class="myWorks" id="myWorks">
+      <div class="myWorks scroll-point" id="myWorks">
         <div class="topPattern"></div>
         <div class="myWorks_inner">
           <h2 class="inner_title title">Мои работы(6)</h2>
@@ -137,7 +137,7 @@
         <div class="bottomPattern"></div>
       </div>
   
-      <div class="contacts" id="contacts">
+      <div class="contacts scroll-point" id="contacts">
         <div class="topPattern"></div>
         <div class="contacts_inner">
           <h2 class="inner_title title">Контакты</h2>
@@ -179,7 +179,7 @@
         <div class="separator__ending separator__ending--end"></div>
       </div>
       
-      <div class="separator" style="translate: 0 494%">
+      <div class="separator" style="translate: 0 484%">
         <div class="separator__ending separator__ending--start"></div>
         <div class="separator__content"></div>
         <div class="separator__ending separator__ending--end"></div>
@@ -199,11 +199,21 @@
     </div>
   </main>
 
+  <script src="langs.js"></script>
+  <script src="scrolling_module.js"></script>
   <script>
 
     const paralaxContainer = document.querySelector('.paralax-container__blocks'),
           paralax_node_scale = +getComputedStyle(paralaxContainer).scale
-    
+
+    const SCROLL_MODULE = new ScrollModule(document.querySelector('.paralax-container'), document.querySelector('.scrollBar'), paralax_node_scale)
+
+    paralaxContainer.querySelectorAll('.scroll-point').forEach(node => {
+      SCROLL_MODULE.addScrollPoint(node.id, paralaxContainer)
+    })
+  </script>
+  <script>
+
     function resetNodePosition(node) {
       const {top, left} = node.getBoundingClientRect()
 
@@ -214,14 +224,71 @@
     resetNodePosition(paralaxContainer)
     resetNodePosition(document.querySelector('.paralax-container__separators'))
 
+    // HEADER FIRST ANIMATION
+
+    setTimeout(() => {
+      document.querySelector('.header').classList.remove('header--opened')
+    }, 5000)
+
   </script>
-  <script src="scrolling_module.js"></script>
   <script>
+    // ABOUT ME BLOCK FOLLOWING EYES SCRIPT
 
-    const SCROLL_MODULE = new ScrollModule(document.querySelector('.paralax-container'), document.querySelector('.scrollBar'), paralax_node_scale)
-
+    window.onmousemove = event => {
+      document.querySelector('.innerImgEyes').style.left = (((event.clientX + 400) * 100 / window.innerWidth) / 80) + 49 + '%'
+      document.querySelector('.innerImgEyes').style.top = ((event.clientY * 100 / window.innerHeight) / 40) + 49 + '%'
+    }
   </script>
+  <script>
+    //MOBILE MENU
 
-  <!-- <script src="index.js"></script> -->
+    function mobileMenuOpen() {
+      document.querySelector('.mobileMenu').style.display = 'flex'
+      setTimeout(()=>{
+        document.querySelector('.mobileMenu').style.opacity = 1
+      },10)
+    }
+    function mobileMenuClose() {
+      document.querySelector('.mobileMenu').style.opacity = 0
+      setTimeout(()=>{
+        document.querySelector('.mobileMenu').style.display = 'none'
+      },200)
+    }
+  </script>
+  <script>
+    //CURSOR_MODULE--------------------------------------------------------------------
+
+    // document.onmousemove = event => {
+    //   const cursorNode = document.querySelector('.bgCursor')
+    //   cursorNode.style.top = event.pageY + 'px'
+    //   cursorNode.style.left = event.pageX + 'px'
+    //   cursorNode.style.opacity = 1
+    // }
+
+    // let redColor = 0
+    // let greenColor = 255
+
+    // let firstScreenParalax = 120
+
+    // if(window.innerWidth > 1024) {
+    // 	document.onwheel = event => {
+    // 		if(event.deltaY > 0) {redColor += 2.2; greenColor -= 2.2}
+    // 		else {redColor -= 2.2; greenColor += 2.2}
+    // 		getNode('.cursor').style.boxShadow = `0px 0px 90px 70px rgba(${redColor}, ${greenColor}, 0, 1)`
+
+    // 		//SCROLLBAR_MODULE--------------------------------------------------------------------
+
+    // 		if((scrollY >= 0 || event.deltaY > 0) && (scrollY <= scrollMaxY || event.deltaY < 0)) scrollY += event.deltaY * 20
+    // 		activScrollInterval === false ? smoothScrollTo(scrollY) : {}
+    // 	}
+    // }
+
+    // else {
+    // 	window.onscroll = () => {
+    // 		getNode('.main').style.top = scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+    // 		getNode('body').style.height = a + scrollY / 2 + (0 * 100 / scrollMaxY / 100 * scrollMaxY) + 'px'
+    // 	}
+    // }
+  </script>
 </body>
 </html>
